@@ -1,29 +1,32 @@
-name: Auto PR from data-bot
+name: Open PR from data-bot
 
 on:
   push:
     branches: [ data-bot ]
 
 permissions:
-  contents: write
+  contents: read
   pull-requests: write
 
 jobs:
   pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          ref: data-bot
-          fetch-depth: 0
+      - name: Ensure PR exists (data-bot -> main)
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          repo="$GITHUB_REPOSITORY"
 
-      - name: Create or update PR
-        uses: peter-evans/create-pull-request@v6
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          base: main
-          branch: data-bot
-          title: "Update Bombus visualization (auto)"
-          body: |
-            Automated update from data-bot branch.
-            Please review generated files under /docs.
+          # If a PR from head=data-bot to base=main already exists, do nothing.
+          if gh pr list -R "$repo" --state open --head data-bot --base main --json number --jq 'length>0' | grep -q true; then
+            echo "PR already exists."
+            exit 0
+          fi
+
+          gh pr create -R "$repo" \
+            --head data-bot \
+            --base main \
+            --title "Update Bombus visualization (auto)" \
+            --body "Automated update from data-bot branch. Please review generated files under /docs."
