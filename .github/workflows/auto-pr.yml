@@ -1,0 +1,29 @@
+name: Auto PR from data-bot
+
+on:
+  push:
+    branches: [ data-bot ]
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  pr:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: data-bot
+          fetch-depth: 0
+
+      - name: Create or update PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          base: main
+          branch: data-bot
+          title: "Update biodiversity visualization (auto)"
+          body: |
+            Automated update from data-bot branch.
+            Please review generated files under /docs.
