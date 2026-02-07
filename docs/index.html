@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>GBIF occurrence density — Bombus impatiens</title>
+  <title>GBIF occurrence density (0.1° grid) — Bombus impatiens</title>
   <link
     rel="stylesheet"
     href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
@@ -55,8 +55,9 @@
       document.getElementById('stats').textContent =
         `Records (raw fetched): ${stats.records_total} | In bbox: ${stats.records_in_bbox} | Years: ${stats.year_min ?? 'NA'}–${stats.year_max ?? 'NA'} | Generated: ${stats.generated_at}`;
 
-      const pts = await loadJSON('data/bombus-impatiens_0.1deg_points.json');
-      // pts is [[lat, lon, weight], ...]
+      const pts = await loadJSON('data/bombus-impatiens_0.1deg_grid.json');
+      // pts is [[lat, lon, weight], ...] where points are 0.1° grid cell centers
+      // and weight is log1p(cell_count).
 
       // Fit bounds to bbox from stats.
       const b = stats.bbox;
@@ -78,5 +79,3 @@
   </script>
 </body>
 </html>
-
-<!-- trigger 2026-02-07T06:32:44Z -->

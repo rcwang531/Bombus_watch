@@ -2,6 +2,13 @@
   "species": "Bombus impatiens",
   "taxonKey": 1340350,
   "resolution_deg": 0.1,
+  "grid": {
+    "dx": 0.1,
+    "dy": 0.1,
+    "cells": 2272,
+    "weight": "log1p(cell_count)",
+    "weight_max": 4.672828834461906
+  },
   "bbox": {
     "minLon": -125.0,
     "maxLon": -66.0,
@@ -12,7 +19,7 @@
   "records_in_bbox": 4920,
   "year_min": 2025,
   "year_max": 2026,
-  "generated_at": "2026-02-07T06:24:13+00:00",
+  "generated_at": "2026-02-07T06:40:34+00:00",
   "source": {
     "name": "GBIF",
     "species_match": "https://api.gbif.org/v1/species/match?name=Bombus+impatiens",
