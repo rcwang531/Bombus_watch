@@ -1,0 +1,22 @@
+{
+  "species": "Bombus impatiens",
+  "taxonKey": 1340350,
+  "resolution_deg": 0.1,
+  "bbox": {
+    "minLon": -125.0,
+    "maxLon": -66.0,
+    "minLat": 24.0,
+    "maxLat": 50.0
+  },
+  "records_total": 5100,
+  "records_in_bbox": 4920,
+  "year_min": 2025,
+  "year_max": 2026,
+  "generated_at": "2026-02-07T06:24:13+00:00",
+  "source": {
+    "name": "GBIF",
+    "species_match": "https://api.gbif.org/v1/species/match?name=Bombus+impatiens",
+    "occurrence_search": "https://api.gbif.org/v1/occurrence/search?taxonKey=1340350&hasCoordinate=true&limit=300&offset=0"
+  },
+  "disclaimer": "Map shows GBIF occurrence record density (sampling effort bias), not true abundance."
+}

@@ -23,7 +23,7 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           base: main
           branch: data-bot
-          title: "Update biodiversity visualization (auto)"
+          title: "Update Bombus visualization (auto)"
           body: |
             Automated update from data-bot branch.
             Please review generated files under /docs.
